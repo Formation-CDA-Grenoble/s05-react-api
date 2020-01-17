@@ -1,17 +1,12 @@
 import React from 'react';
-import Axios from 'axios';
+import Container from './containers/Container';
 
-const fetchFromAPI = () => {
-  Axios.get('https://swapi.co/api/films/1/')
-  .then(response => console.log(response))
-  ;
+const App = () => {
+  return (
+    <div>
+      <Container />
+    </div>
+  );
 }
-
-const App = () =>
-  <div>
-    {fetchFromAPI()}
-    Bonjour Grenoble!
-  </div>
-;
 
 export default App;
