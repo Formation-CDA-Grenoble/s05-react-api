@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Loader from 'react-loader-spinner';
-import { Character } from '../components';
+import { Character, Planet } from '../components';
 
 export default class Container extends Component {
   state = {
@@ -24,6 +24,8 @@ export default class Container extends Component {
     switch (type) {
       case 'people':
         return <Character {...data} />;
+      case 'planets':
+        return <Planet {...data} />;
       default:
         return null;
     }

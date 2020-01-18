@@ -5,7 +5,7 @@ const App = () => {
   return (
     <div>
       <Container
-        type='people'
+        type='planets'
         id={4}
       />
     </div>
