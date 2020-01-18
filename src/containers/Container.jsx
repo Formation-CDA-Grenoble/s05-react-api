@@ -9,22 +9,33 @@ export default class Container extends Component {
   }
 
   componentDidMount = () => {
-    Axios.get('https://swapi.co/api/people/1/')
+    const { type, id } = this.props;
+
+    Axios.get(`https://swapi.co/api/${type}/${id}/`)
     .then(response => {
       this.setState({ data: response.data });
     });
   }
 
+  generateComponent = () => {
+    const { type } = this.props;
+    const { data } = this.state;
+
+    switch (type) {
+      case 'people':
+        return <Character {...data} />;
+      default:
+        return null;
+    }
+  }
+
   render = () => {
-    // const data = this.state.data;
     const { data } = this.state;
 
     if (data === null) {
       return <Loader type="Oval" color="#00a0a0" height={80} width={80} />;
     }
 
-    return (
-      <Character {...data} />
-    );
+    return this.generateComponent();
   }
 }

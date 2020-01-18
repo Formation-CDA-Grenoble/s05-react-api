@@ -4,7 +4,10 @@ import Container from './containers/Container';
 const App = () => {
   return (
     <div>
-      <Container />
+      <Container
+        type='people'
+        id={4}
+      />
     </div>
   );
 }

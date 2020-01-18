@@ -1,7 +1,5 @@
 import React from 'react';
 
-// const { name, gender, hair_color, eye_color } = props;
-
 const Character = ({ name, gender, hair_color, eye_color }) =>
   <div>
     <h1>{name}</h1>
