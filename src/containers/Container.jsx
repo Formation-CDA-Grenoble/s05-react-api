@@ -15,8 +15,18 @@ export default class Container extends Component {
   }
 
   componentDidMount = () => {
-    const { type, id } = this.props;
+    console.log('Component mounted');
+    this.fetchData(this.props);
+  }
 
+  componentWillReceiveProps = (newProps) => {
+    console.log('New props received');
+    this.setState({ data: null });
+    this.fetchData(newProps);
+  }
+
+  fetchData = (props) => {
+    const { type, id } = props;
     Axios.get(`https://swapi.co/api/${type}/${id}/`)
     .then(response => {
       this.setState({ data: response.data });

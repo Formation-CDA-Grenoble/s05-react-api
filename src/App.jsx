@@ -1,13 +1,10 @@
 import React from 'react';
-import Container from './containers/Container';
+import { Selector } from './components';
 
 const App = () => {
   return (
     <div>
-      <Container
-        type='films'
-        id={3}
-      />
+      <Selector />
     </div>
   );
 }
