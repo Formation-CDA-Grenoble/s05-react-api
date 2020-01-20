@@ -12,16 +12,18 @@ const ComponentNames = {
 export default class Container extends Component {
   state = {
     data: null,
+    errorMessage: null,
   }
 
   componentDidMount = () => {
-    console.log('Component mounted');
     this.fetchData(this.props);
   }
 
   componentWillReceiveProps = (newProps) => {
-    console.log('New props received');
-    this.setState({ data: null });
+    this.setState({
+      data: null,
+      errorMessage: null,
+    });
     this.fetchData(newProps);
   }
 
@@ -29,7 +31,12 @@ export default class Container extends Component {
     const { type, id } = props;
     Axios.get(`https://swapi.co/api/${type}/${id}/`)
     .then(response => {
-      this.setState({ data: response.data });
+      this.setState({
+        data: response.data,
+      });
+    })
+    .catch(error => {
+      this.setState({ errorMessage: error.message });
     });
   }
 
@@ -47,7 +54,11 @@ export default class Container extends Component {
   }
 
   render = () => {
-    const { data } = this.state;
+    const { data, errorMessage } = this.state;
+
+    if (errorMessage) {
+      return <div>{errorMessage}</div>;
+    }
 
     if (data === null) {
       return <Loader type="Oval" color="#00a0a0" height={80} width={80} />;
