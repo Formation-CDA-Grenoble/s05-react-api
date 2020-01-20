@@ -5,8 +5,8 @@ const App = () => {
   return (
     <div>
       <Container
-        type='planets'
-        id={4}
+        type='films'
+        id={3}
       />
     </div>
   );

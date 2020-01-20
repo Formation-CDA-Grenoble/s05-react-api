@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Loader from 'react-loader-spinner';
-import { Character, Planet } from '../components';
+import { Character, Planet, Film } from '../components';
+
+const ComponentNames = {
+  'people': Character,
+  'planets': Planet,
+  'films': Film,
+}
 
 export default class Container extends Component {
   state = {
@@ -21,14 +27,13 @@ export default class Container extends Component {
     const { type } = this.props;
     const { data } = this.state;
 
-    switch (type) {
-      case 'people':
-        return <Character {...data} />;
-      case 'planets':
-        return <Planet {...data} />;
-      default:
-        return null;
+    const ComponentName = ComponentNames[type];
+
+    if (ComponentName) {
+      return <ComponentName {...data} />;
     }
+
+    return null;
   }
 
   render = () => {
