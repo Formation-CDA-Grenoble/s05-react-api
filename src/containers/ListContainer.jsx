@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import Loader from 'react-loader-spinner';
 import Axios from 'axios';
-import { Film } from '../components';
+import { Film, Planet, Character } from '../components';
+
+const ComponentNames = {
+  'people': Character,
+  'planets': Planet,
+  'films': Film,
+}
 
 class ListContainer extends Component {
   state = {
@@ -10,7 +16,8 @@ class ListContainer extends Component {
   }
 
   componentDidMount = () => {
-    Axios.get('https://swapi.co/api/films/')
+    const { type } = this.props;
+    Axios.get(`https://swapi.co/api/${type}/`)
     .then(response => {
       this.setState({ data: response.data });
     })
@@ -21,10 +28,15 @@ class ListContainer extends Component {
 
   generateComponents = () => {
     const { data } = this.state;
+    const { type } = this.props;
 
-    return data.results.map(item =>
-      <Film {...item} />
-    );
+    const ComponentName = ComponentNames[type];
+
+    if (ComponentName) {
+      return data.results.map(item =>
+        <ComponentName {...item} />
+      );
+    }
   }
 
   render = () => {

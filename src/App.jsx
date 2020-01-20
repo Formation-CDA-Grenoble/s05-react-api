@@ -5,7 +5,9 @@ import ListContainer from './containers/ListContainer';
 const App = () => {
   return (
     <div>
-      <ListContainer />
+      <ListContainer
+        type="planet"
+      />
     </div>
   );
 }
