@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Loader from 'react-loader-spinner';
-import { Character, Planet, Film } from '../components';
+import { ComponentNames } from '../data';
 
-const ComponentNames = {
-  'people': Character,
-  'planets': Planet,
-  'films': Film,
-}
 
 export default class Container extends Component {
   state = {

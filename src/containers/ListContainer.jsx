@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import Loader from 'react-loader-spinner';
 import Axios from 'axios';
-import { Film, Planet, Character } from '../components';
+import { ComponentNames } from '../data';
 
-const ComponentNames = {
-  'people': Character,
-  'planets': Planet,
-  'films': Film,
-}
 
 class ListContainer extends Component {
   state = {
@@ -37,6 +32,8 @@ class ListContainer extends Component {
         <ComponentName {...item} />
       );
     }
+
+    return null;
   }
 
   render = () => {
